@@ -1,0 +1,175 @@
+US1 - Registo de Consumo (Cenário C1 - RF1)
+Enquanto Gestor de Operações
+Quero registar o consumo de um cliente
+Para garantir o controlo das cobranças e identificar anomalias
+
+Critérios de Aceitação
+
+CA1. Cenário OK
+Dado que o gestor de operações está autenticado
+E o cliente existe no sistema
+Quando os valores do consumo estão dentro dos limites normais
+OU há menos de 12 registos anteriores
+Então o registo é efetuado com o estado “Concluído”.
+
+CA2. Cenário valores fora do normal
+
+Dado que o gestor de operações está autenticado
+E há pelo menos 12 registos de consumo anteriores
+Quando os valores do consumo do cliente estão fora dos limites esperados (mínimo e máximo nos últimos 12 meses)
+Então o registo é efetuado com o estado “Pendente”
+E um alerta é exibido no sistema
+E um e-mail é enviado para o cliente informando sobre o consumo anómalo.
+
+CA3. Cenário registo repetido
+
+Dado que o gestor de operações está autenticado
+Quando o consumo do cliente já foi registado para o período informado
+Então é exibida uma mensagem de erro no sistema
+E o registo é rejeitado.
+
+-------------------------------------------------
+
+US2 - Acompanhamento do Estado do Consumo (Cenário C2 - RF2)
+Enquanto Cliente Residencial
+Quero visualizar o estado do meu consumo
+Para gerir melhor os meus gastos e evitar surpresas na fatura
+
+Critérios de Aceitação
+
+CA1. Cenário OK
+Dado que o cliente está autenticado
+Quando acessa a área de consumo no sistema
+Então ele vê o estado do consumo (pendente, validado ou faturado)
+E tem acesso ao histórico detalhado dos últimos 12 meses.
+
+CA2. Cenário de aumento inesperado no consumo
+Dado que o cliente está autenticado
+E seu consumo aumentou mais de 20% em relação ao mês anterior
+Quando ele acessa o sistema
+Então um alerta é exibido informando sobre o aumento de consumo
+E sugestões de economia são apresentadas.
+
+CA3. Cenário de dados indisponíveis
+Dado que o cliente está autenticado
+Quando tenta acessar o estado do consumo
+E há um problema na atualização dos dados
+Então uma mensagem de erro é exibida informando a indisponibilidade temporária
+E o cliente é instruído a tentar novamente mais tarde.
+
+-------------------------------------------------
+
+US3 - Monitorização da Disponibilidade de Energia (Cenário C3 - RF3)
+Enquanto Gestor de Operações
+Quero monitorizar a disponibilidade de energia em tempo real
+Para garantir a estabilidade da rede e evitar falhas
+
+Critérios de Aceitação
+CA1. Cenário OK
+Dado que o gestor de operações está autenticado
+Quando acessa o painel de monitorização
+Então ele visualiza os dados de disponibilidade da rede elétrica em tempo real
+E recebe alertas sobre possíveis sobrecargas.
+
+CA2. Cenário de sobrecarga na rede
+Dado que o gestor de operações está autenticado
+E há um setor da rede com carga acima de 90%
+Quando acessa o painel
+Então um alerta de risco é exibido
+E são sugeridas ações para redistribuir a carga.
+
+CA3. Cenário de falha no sistema
+Dado que o gestor de operações está autenticado
+Quando tenta acessar o painel
+E os dados não estão disponíveis por uma falha na atualização
+Então uma mensagem de erro é exibida
+E um alerta técnico é gerado para investigação.
+
+-------------------------------------------------
+
+US4 - Programação de Manutenções e Inspeções (Cenário C4 - RF4)
+Enquanto Gestor de Operações
+Quero programar inspeções e manutenções na rede elétrica
+Para garantir a estabilidade do fornecimento de energia
+
+Critérios de Aceitação
+CA1. Cenário OK
+Dado que o gestor de operações está autenticado
+Quando acessa a funcionalidade de programação de manutenção
+E seleciona uma subestação ou setor da rede
+Então pode agendar uma inspeção preventiva
+E os técnicos responsáveis são notificados automaticamente.
+
+CA2. Cenário de conflito de agendamento
+Dado que o gestor de operações está autenticado
+E há uma manutenção já programada para a mesma região no mesmo período
+Quando tenta criar um novo agendamento
+Então o sistema exibe um aviso de conflito de datas
+E sugere datas alternativas disponíveis.
+
+CA3. Cenário de erro ao criar agendamento
+Dado que o gestor de operações está autenticado
+Quando tenta programar uma manutenção
+E os dados inseridos estão incompletos
+Então o sistema impede a criação do agendamento
+E exibe uma mensagem de erro informando os campos obrigatórios.
+
+-------------------------------------------------
+
+US5 - Atribuição de Recursos Energéticos (Cenário C5 - RF5)
+Enquanto Técnico de Manutenção
+Quero atribuir recursos energéticos conforme necessidade e localização
+Para garantir um serviço mais eficiente e rápido
+
+Critérios de Aceitação
+CA1. Cenário OK
+Dado que o técnico de manutenção está autenticado
+Quando acessa o sistema e verifica uma falha na rede
+Então pode visualizar a melhor alocação de recursos com base na localização
+E realizar a distribuição necessária.
+
+CA2. Cenário de falta de recursos disponíveis
+Dado que o técnico de manutenção está autenticado
+Quando tenta realocar energia
+E não há disponibilidade suficiente para a redistribuição
+Então um alerta é exibido informando indisponibilidade
+E são sugeridas ações alternativas, como acionamento de geradores.
+
+CA3. Cenário de erro ao acessar o sistema
+Dado que o técnico de manutenção está autenticado
+Quando tenta acessar a funcionalidade de alocação de recursos
+E o sistema está offline
+Então uma mensagem de erro é exibida
+E a opção de sincronização offline é ativada.
+
+-------------------------------------------------
+
+US6 - Notificação de Clientes em Caso de Interrupção (Cenário C6 - RF6)
+Enquanto Técnico de Manutenção
+Quero notificar os clientes sobre interrupções no fornecimento de energia
+Para garantir transparência e reduzir chamadas de suporte
+
+Critérios de Aceitação
+
+CA1. Cenário OK
+
+Dado que o técnico de manutenção está autenticado
+Quando identifica uma interrupção programada ou inesperada
+Então pode acionar uma notificação automática para os clientes afetados
+E visualizar a confirmação do envio.
+
+CA2. Cenário de falha no envio de notificação
+
+Dado que o técnico de manutenção está autenticado
+Quando tenta enviar uma notificação
+E há clientes com dados de contato desatualizados
+Então o sistema exibe uma lista dos clientes não notificados
+E sugere a atualização das informações.
+
+CA3. Cenário de indisponibilidade do sistema de notificações
+
+Dado que o técnico de manutenção está autenticado
+Quando tenta enviar uma notificação
+E o serviço de envio está temporariamente indisponível
+Então uma mensagem de erro é exibida
+E um novo envio é agendado automaticamente assim que o sistema estiver disponível.
